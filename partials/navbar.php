@@ -8,7 +8,10 @@
         <div>
             <a class="navbar-brand brand-logo" href="index.php">
                 <!-- <img src="images/logo.svg" alt="logo" /> -->
-                <span class="fw-bold " style="font-family: Sofia,sans-serif;"> <span class="fs-2 font-effect-shadow-multiple" >File</span> <span class="text-primary fs-5 font-effect-shadow-multiple">Manager</span> </span>
+                <span class="fw-bold " style="font-family: Sofia,sans-serif;">
+                    <span class="fs-2 font-effect-shadow-multiple">File</span>
+                    <span class="text-primary fs-5 font-effect-shadow-multiple">Manager</span>
+                </span>
             </a>
             <!-- <a class="navbar-brand brand-logo-mini" href="index.php">
                 <img src="images/logo-mini.svg" alt="logo" />
@@ -16,39 +19,39 @@
         </div>
     </div>
     <?php
-                      $id = $_SESSION['user_id'];
-                      $sql = "SELECT * from users where user_id = $id";
-                      $result = $conn->query($sql);
+    $id = $_SESSION['user_id'];
+    $sql = "SELECT * from users where user_id = $id";
+    $result = $conn->query($sql);
 
-                      if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($row = $result->fetch_assoc()) {
-                         ?>
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+    ?>
     <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                 <h1 class="welcome-text">
                     <?php
-// Set the timezone to your local timezone
-date_default_timezone_set('Asia/Kolkata'); // Replace with your timezone, e.g., 'America/New_York'
+                    // Set the timezone to your local timezone
+                    date_default_timezone_set('Asia/Kolkata'); // Replace with your timezone, e.g., 'America/New_York'
 
-// Get the current hour
-$currentHour = date('G');
+                    // Get the current hour
+                    $currentHour = date('G');
 
-// Define the greetings
-$greeting = '';
+                    // Define the greetings
+                    $greeting = '';
 
-if ($currentHour >= 5 && $currentHour < 12) {
-    $greeting = 'Good Morning';
-} elseif ($currentHour >= 12 && $currentHour < 18) {
-    $greeting = 'Good Afternoon';
-} else {
-    $greeting = 'Good Evening';
-}
+                    if ($currentHour >= 5 && $currentHour < 12) {
+                        $greeting = 'Good Morning';
+                    } elseif ($currentHour >= 12 && $currentHour < 18) {
+                        $greeting = 'Good Afternoon';
+                    } else {
+                        $greeting = 'Good Evening';
+                    }
 
-// Print the greeting message
-echo $greeting;
-?>,
+                    // Print the greeting message
+                    echo $greeting;
+                    ?>,
 
                     <span class="text-black fw-bold text-capitalize">
                         <?=$row['user_fullname']?>
@@ -163,10 +166,19 @@ echo $greeting;
                     <a class="dropdown-item"><i
                             class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a> -->
                     <a href="php/logout.php" class="dropdown-item"><i
-                            class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign
-                        Out</a>
+                            class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
                 </div>
             </li>
+            <!-- Add admin links here -->
+            <?php if ($_SESSION['role'] === 1): // Check if the user is an admin ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" data-bs-toggle="dropdown">Admin</a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown">
+                    <a class="dropdown-item" href="/admin/admin_list_users.php">Manage Users</a>
+                    <a class="dropdown-item" href="/admin/admin_add_user.php">Add User</a>
+                </div>
+            </li>
+            <?php endif; ?>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
             data-bs-toggle="offcanvas">
@@ -174,9 +186,9 @@ echo $greeting;
         </button>
     </div>
     <?php
-                        }
-                      } else {
-                        echo "0 results";
-                      }
-                      ?>
+        }
+    } else {
+        echo "0 results";
+    }
+    ?>
 </nav>

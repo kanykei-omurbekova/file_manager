@@ -24,7 +24,7 @@ if ($pwdresult->num_rows > 0) {
                     $_SESSION['pinchanged'] = "success";
                     header("location: $redirect");
                 } else {
-                echo "Error updating record: " . $conn->error;
+                echo "Ошибка при обновлении записи: " . $conn->error;
                 }
     }else {
         $_SESSION['wrongpwd'] = "success";
@@ -32,7 +32,7 @@ if ($pwdresult->num_rows > 0) {
     }
   }
 } else {
-  echo "0 results";
+  echo "результатов 0";
 }
 
 ?>

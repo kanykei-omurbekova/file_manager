@@ -24,13 +24,13 @@ $redirect = $_SERVER['HTTP_REFERER'];
                 $_SESSION['new_folder_created'] = "success";
                     header("location: $redirect");
             } else {
-                echo "Error creating folder or inserting into the database: " . $conn->error;
+                echo "Ошибка при создании папки или вставке в базу данных: " . $conn->error;
             }
 
             // Close the database connection
             $conn->close();
         } else {
-            echo "Error creating folder.";
+            echo "Ошибка при создании папки.";
         }
     } else {
         $_SESSION['folder_exists'] = "success";

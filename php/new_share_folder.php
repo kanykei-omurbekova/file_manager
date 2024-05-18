@@ -13,7 +13,7 @@ if ($conn->query($sql) === TRUE) {
     $_SESSION['sf_created'] = "success";
     header("location: $redirect");
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Ошибка: " . $sql . "<br>" . $conn->error;
 }
 
 $conn->close();

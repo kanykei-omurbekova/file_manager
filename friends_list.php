@@ -18,7 +18,7 @@ include 'partials/php_functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Friends List </title>
+    <title>Список Друзей </title>
     <?php include 'partials/headtags.php'; ?>
 </head>
 
@@ -40,15 +40,14 @@ include 'partials/php_functions.php';
                         <div class="col-lg-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Friends List </h4>
+                                    <h4 class="card-title">Список Друзей </h4>
                                     <p class="card-description">
                                         <!-- cancel friend request notificaton  -->
                                         <?php
                                     if (isset($_SESSION['unfriend'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-person-x-fill"></i> Removed ! </b> Friend removed
-                                        successfully.
+                                        <b> <i class="bi bi-person-x-fill"></i> Удалено! </b> Друг успешно удален.
                                     </div>
                                     <?php
                                        unset($_SESSION['unfriend']);
@@ -59,10 +58,10 @@ include 'partials/php_functions.php';
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Username</th>
-                                                    <th>Created</th>
-                                                    <th>Remove</th>
+                                                <th>Имя</th>
+                                                <th>Имя пользователя</th>
+                                                <th>Создано</th>
+                                                <th>Удалить</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -82,11 +81,11 @@ include 'partials/php_functions.php';
                                                     <td>
                                                         <?php
                                                                 // Set the timezone to Asia/Kolkata
-                                                                date_default_timezone_set('Asia/Kolkata');
+                                                                date_default_timezone_set('Asia/Bishkek');
 
                                                                 // Assuming $row['story_date'] contains the story's date in a format like 'Y-m-d H:i:s'
                                                                 $createdat = strtotime($row['frd_date']);
-                                                                $currentDate = time(); // Get the current timestamp in Asia/Kolkata timezone
+                                                                $currentDate = time(); // Get the current timestamp in Asia/Bishkek timezone
 
                                                                 // Calculate the time difference in seconds
                                                                 $timeDifference = $currentDate - $createdat;
@@ -96,23 +95,23 @@ include 'partials/php_functions.php';
 
                                                                 if ($timeDifference < 60) {
                                                                     // Less than a minute
-                                                                    $timePosted = "Just now";
+                                                                    $timePosted = "Только что";
                                                                 } elseif ($timeDifference < 3600) {
                                                                     // Less than an hour
                                                                     $minutes = floor($timeDifference / 60);
-                                                                    $timePosted = $minutes . ' minute' . ($minutes != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $minutes . ' минут' . ($minutes != 1 ? '' : '') . ' назад';
                                                                 } elseif ($timeDifference < 86400) {
                                                                     // Less than a day
                                                                     $hours = floor($timeDifference / 3600);
-                                                                    $timePosted = $hours . ' hour' . ($hours != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $hours . ' часов' . ($hours != 1 ? '' : '') . ' назад';
                                                                 } elseif ($timeDifference < 2592000) {
                                                                     // Less than a month (30 days)
                                                                     $days = floor($timeDifference / 86400);
-                                                                    $timePosted = $days . ' day' . ($days != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $days . ' дней' . ($days != 1 ? '' : '') . ' назад';
                                                                 } else {
                                                                     // More than a month
                                                                     $months = floor($timeDifference / 2592000); // Approximate number of seconds in a month
-                                                                    $timePosted = $months . ' month' . ($months != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $months . ' месяцев' . ($months != 1 ? '' : '') . ' назад';
                                                                 }
 
                                                                 // Print the time when the story was posted
@@ -125,7 +124,7 @@ include 'partials/php_functions.php';
                                                             class="btn btn-inverse-danger btn-sm rounded"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#frd_id<?=$row['frd_id']?>">
-                                                            <i class="bi bi-person-dash-fill"></i> &nbsp; Remove
+                                                            <i class="bi bi-person-dash-fill"></i> &nbsp; Удалить
                                                         </button>
 
                                                         <!-- Modal -->
@@ -143,17 +142,17 @@ include 'partials/php_functions.php';
                                                                             aria-label="Close"></button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        Are you sure you want to unfriend <b
+                                                                    Вы уверены, что хотите удалить друга? <b
                                                                             class="text-capitalize"><?=$row['user_fullname']?></b>
                                                                         ?.
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Close</button>
+                                                                            data-bs-dismiss="modal">Закрыть</button>
                                                                         <a href="friends/unfriend_friend.php?frd_id=<?=$row['frd_id']?>"
                                                                             class="btn btn-danger rounded"> <i
                                                                                 class="bi bi-person-dash-fill"></i>
-                                                                            &nbsp; Remove</a>
+                                                                            &nbsp; Удалить</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -164,7 +163,7 @@ include 'partials/php_functions.php';
                                                         }
                                                         } else {
                                                             ?>
-                                                <td>No Friends </td>
+                                                <td>Нет друзей</td>
                                                 <?php
                                                         }
                                                 ?>

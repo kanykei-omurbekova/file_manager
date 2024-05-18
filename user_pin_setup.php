@@ -18,7 +18,7 @@ include 'partials/php_functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title> User PIN Setup </title>
+    <title>Настройка ПИН-кода пользователя</title>
     <?php include 'partials/headtags.php'; ?>
 </head>
 
@@ -35,7 +35,7 @@ include 'partials/php_functions.php';
             <?php include 'partials/sidebar.php'; ?>
 
             <?php
-            if ($_SESSION['role'] == 0) {
+            if ($_SESSION['role'] == 0 || $_SESSION['role'] == 1) {
                 ?>
             <!-- customer dashboard -->
             <div class="main-panel">
@@ -44,15 +44,14 @@ include 'partials/php_functions.php';
                         <div class="col-md-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Change User PIN</h4>
+                                    <h4 class="card-title">Изменить ПИН-код пользователя</h4>
                                     <p class="card-description">
                                         <!-- PIN changed notificaton  -->
                                         <?php
                                     if (isset($_SESSION['pinchanged'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Success ! </b> PIN changed
-                                        successfully.
+                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Успешно ! </b> ПИН-код успешно изменен.
                                     </div>
                                     <?php
                                        unset($_SESSION['pinchanged']);
@@ -63,7 +62,7 @@ include 'partials/php_functions.php';
                                     if (isset($_SESSION['wrongpwd'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Failed ! </b> Wrong Password.
+                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Ошибка ! </b> Неправильный пароль.
                                     </div>
                                     <?php
                                        unset($_SESSION['wrongpwd']);
@@ -72,17 +71,17 @@ include 'partials/php_functions.php';
                                     </p>
                                     <form class="forms-sample" action="php/update_user_pin.php" method="POST">
                                         <div class="form-group">
-                                            <label for="exampleInputUsername1">New PIN</label>
+                                            <label for="exampleInputUsername1">Новый PIN код</label>
                                             <input type="text" maxlength="4" name="pin" class="form-control"
-                                                id="exampleInputUsername1" placeholder="Enter PIN">
+                                                id="exampleInputUsername1" placeholder="Введите PIN-код">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Password</label>
+                                            <label for="exampleInputEmail1">Пароль</label>
                                             <input type="password" name="password" class="form-control"
-                                                id="exampleInputEmail1" placeholder="Password">
+                                                id="exampleInputEmail1" placeholder="Пароль">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary me-2">Change PIN</button>
+                                        <button type="submit" class="btn btn-primary me-2">Изменить PIN код</button>
                                     </form>
                                 </div>
                             </div>

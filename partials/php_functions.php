@@ -1,5 +1,5 @@
 <?php
-    // Convert file byter size in different formats 
+    // Преобразование размера файлов в различные форматы 
  function formatFileSize($sizeInBytes) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
     $unitIndex = 0;

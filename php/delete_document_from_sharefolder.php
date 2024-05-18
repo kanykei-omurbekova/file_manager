@@ -13,7 +13,7 @@ if ($conn->query($delete) === TRUE) {
     $_SESSION['doc_delete_sf'] = "success";
     header("location: $redirect");
   } else {
-    echo "Error deleting record: " . $conn->error;
+    echo "Ошибка при удалении записи " . $conn->error;
   }
 
 ?>

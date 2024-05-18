@@ -20,12 +20,12 @@ if ($conn->query($sfdocs) === TRUE) {
                             $_SESSION['sfdelete'] = "success";
                             header("location: $redirect");
                         } else {
-                        echo "Error deleting record: " . $conn->error;
+                        echo "Ошибка при удалении записи: " . $conn->error;
                         }
             } else {
-            echo "Error deleting sharefolder members: " . $conn->error;
+            echo "Ошибка при удалении участников общей папки: " . $conn->error;
             }
 } else {
-  echo "Error deleting sharefolder documents : " . $conn->error;
+  echo "Ошибка при удалении документов общей папки: " . $conn->error;
 }
 ?>

@@ -27,7 +27,7 @@ else {
 }
   }
 } else {
-  echo "0 results";
+  echo "результатов 0";
 }
 
 ?>

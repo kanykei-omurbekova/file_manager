@@ -17,7 +17,7 @@ include 'partials/php_functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Dashboard</title>
+    <title>Панель Управления</title>
     <?php include 'partials/headtags.php'; ?>
 </head>
 
@@ -97,8 +97,8 @@ include 'partials/php_functions.php';
                                                     </linearGradient>
                                                     <path fill="url(#WQEfvoQAcpQgQgyjQQ4Hqb_dINnkNb1FBl4_gr2)" d="M21.586,14.414l3.268-3.268C24.947,11.053,25.074,11,25.207,11H43c1.105,0,2,0.895,2,2v26c0,1.105-0.895,2-2,2H5c-1.105,0-2-0.895-2-2V15.5C3,15.224,3.224,15,3.5,15h16.672C20.702,15,21.211,14.789,21.586,14.414z"></path>
                                                 </svg>
-                                                Folders list
-                                                <a href="new_document.php" class="btn btn-inverse-success float-end rounded-pill btn-md">Upload New</a>
+                                                Список папок
+                                                <a href="new_document.php" class="btn btn-inverse-success float-end rounded-pill btn-md">Загрузить новый</a>
                                             </h4>
                                             <p class="card-description">
                                                 <!-- wrong pin notificaton  -->
@@ -106,7 +106,7 @@ include 'partials/php_functions.php';
                                                 if (isset($_SESSION['wrongpin'])) {
                                                 ?>
                                                     <div id="notification" class="alert alert-danger" role="alert">
-                                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Failed ! </b> Wrong PIN.
+                                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Failed ! </b> Неправильный PIN.
                                                     </div>
                                                 <?php
                                                     unset($_SESSION['wrongpin']);
@@ -117,9 +117,9 @@ include 'partials/php_functions.php';
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Folder </th>
-                                                            <th>Items</th>
-                                                            <th>Size</th>
+                                                            <th>Папка </th>
+                                                            <th>Элементы</th>
+                                                            <th>Размер</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -272,24 +272,24 @@ include 'partials/php_functions.php';
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Admin Dashboard</h4>
-                                        <p class="card-description">Manage your application</p>
+                                        <h4 class="card-title">Панель Админа</h4>
+                                        <p class="card-description">Управляйте вашим приложением</p>
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Function</th>
-                                                        <th>Description</th>
+                                                        <th>Функции</th>
+                                                        <th>Описание</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><a href="admin/admin_list_users.php">Manage Users</a></td>
-                                                        <td>View, add, delete, and update users</td>
+                                                        <td><a href="admin/admin_list_users.php">Управление пользователями</a></td>
+                                                        <td>Просмотр, добавление, удаление и обновление пользователей</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><a href="admin/admin_add_user.php">Add User</a></td>
-                                                        <td>Add a new user to the system</td>
+                                                        <td><a href="admin/admin_add_user.php">Добавить пользователя</a></td>
+                                                        <td>Добавить нового пользователя в систему</td>
                                                     </tr>
                                                     <!-- Add more admin functionalities as needed -->
                                                 </tbody>
@@ -299,6 +299,71 @@ include 'partials/php_functions.php';
                                 </div>
                             </div>
                         </div>
+
+                         <!-- Document Approval Section -->
+                         <div class="row">
+                            <div class="col-lg-12 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Утверждение Документов</h4>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Название Документа</th>
+                                                        <th>Загружено Пользователем</th>
+                                                        <th>Статус Утверждения</th>
+                                                        <th>Действия</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    $sql = "SELECT d.*, u.username AS uploader, a.user_fullname AS approver 
+                                                            FROM documents d
+                                                            LEFT JOIN users u ON d.doc_user = u.user_id
+                                                            LEFT JOIN users a ON d.approved_by = a.user_id";
+                                                    $result = $conn->query($sql);
+
+                                                    if ($result->num_rows > 0) {
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            ?>
+                                                            <tr>
+                                                                <td><?= htmlspecialchars($row['doc_name']) ?></td>
+                                                                <td><?= htmlspecialchars($row['uploader']) ?></td>
+                                                                <td>
+                                                                    <?php
+                                                                    if ($row['approved'] == 1) {
+                                                                        echo "Утвердил " . htmlspecialchars($row['approver']) . " в " . htmlspecialchars($row['approved_at']);
+                                                                    } else {
+                                                                        echo "В ожидании Подтверждения";
+                                                                    }
+                                                                    ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php if ($row['approved'] == 0): ?>
+                                                                        <form action="admin/approve_document.php" method="post">
+                                                                            <input type="hidden" name="doc_id" value="<?= $row['doc_id'] ?>">
+                                                                            <button type="submit" class="btn btn-success">Утвердить</button>
+                                                                        </form>
+                                                                    <?php endif; ?>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    } else {
+                                                        echo "<tr><td colspan='4'>No documents found.</td></tr>";
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     <?php
                     } else {
                         echo "Invalid user role.";
@@ -313,7 +378,7 @@ include 'partials/php_functions.php';
     <?php include 'partials/javascripts.php'; ?>
 
     
-    // JavaScript code for handling dashboard interactions
+    <!-- // JavaScript code for handling dashboard interactions -->
 
 <script>
    // Function to format file sizes

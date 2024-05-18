@@ -17,7 +17,7 @@ include 'config.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Create New Folder</title>
+    <title>Создать Новую Папку</title>
     <?php include 'partials/headtags.php'; ?>
 </head>
 
@@ -40,14 +40,13 @@ include 'config.php';
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Create New Folder </h4>
+                                    <h4 class="card-title">Создать Новую Папку </h4>
                                     <p class="card-description">
                                         <?php
                                     if (isset($_SESSION['new_folder_created'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-check-circle-fill"></i>Success ! </b>New Folder created
-                                        successfully.
+                                        <b> <i class="bi bi-check-circle-fill"></i> Успех! </b>Новая папка успешно создана.
                                     </div>
                                     <?php
                                        unset($_SESSION['new_folder_created']);
@@ -58,8 +57,7 @@ include 'config.php';
                                     if (isset($_SESSION['folder_exists'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-x-circle-fill"></i>Failed ! </b> Folder name not available.
-                                        Please choose another name.
+                                        <b> <i class="bi bi-x-circle-fill"></i>Ошибка ! </b> Название папки недоступно. Пожалуйста, выберите другое название.
                                     </div>
                                     <?php
                                        unset($_SESSION['folder_exists']);
@@ -68,11 +66,11 @@ include 'config.php';
                                     </p>
                                     <form class="forms-sample" action="php/new_folder.php" method="post">
                                         <div class="form-group">
-                                            <label for="exampleInputUsername1">Folder Name </label>
+                                            <label for="exampleInputUsername1">Название Папки </label>
                                             <input type="text" name="folder" class="form-control"
-                                                id="exampleInputUsername1" placeholder="Document Name" required>
+                                                id="exampleInputUsername1" placeholder="Введите название" required>
                                         </div>
-                                        <button type="submit" class="btn btn-primary me-2">Create Folder</button>
+                                        <button type="submit" class="btn btn-primary me-2">Создать Папку</button>
                                     </form>
                                 </div>
                             </div>
@@ -82,14 +80,13 @@ include 'config.php';
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Folders List</h4>
+                                    <h4 class="card-title">Список папок</h4>
                                     <p class="card-description fs-5">
                                         <?php
                                     if (isset($_SESSION['folder_deleted'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-check-circle-fill"></i> Deleted ! </b>Folder Deleted
-                                        successfully.
+                                        <b> <i class="bi bi-check-circle-fill"></i> Удалено ! </b>Папка успешно удалена.
                                     </div>
                                     <?php
                                        unset($_SESSION['folder_deleted']);
@@ -100,9 +97,7 @@ include 'config.php';
                                     if (isset($_SESSION['locked'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-check-circle-fill"></i> Success ! </b>Folder privacy
-                                        updated
-                                        successfully.
+                                        <b> <i class="bi bi-check-circle-fill"></i> Успех ! </b>Приватность папки успешно обновлена.
                                     </div>
                                     <?php
                                        unset($_SESSION['locked']);
@@ -113,7 +108,7 @@ include 'config.php';
                                     if (isset($_SESSION['pin_notmatch'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Failed ! </b> Wrong PIN.
+                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Ошибка ! </b> Неправильный PIN.
                                     </div>
                                     <?php
                                        unset($_SESSION['pin_notmatch']);
@@ -125,7 +120,7 @@ include 'config.php';
                                     if (isset($_SESSION['error_delete_folder'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Failed ! </b> Folder should be empty to delete.
+                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Ошибка ! </b> Для удаления папка должна быть пустой.
                                     </div>
                                     <?php
                                        unset($_SESSION['error_delete_folder']);
@@ -136,10 +131,10 @@ include 'config.php';
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Name </th>
-                                                    <th>Created</th>
-                                                    <th>Privacy</th>
-                                                    <th>Delete</th>
+                                                <th>Название</th>
+                                                <th>Создано</th>
+                                                <th>Приватность</th>
+                                                <th>Удалить</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -188,7 +183,7 @@ include 'config.php';
                                                             class="btn btn-inverse-success btn-icon rounded-pill btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#locked<?=$row['folder_id']?>">
-                                                            <i class="bi bi-lock-fill"></i> Locked
+                                                            <i class="bi bi-lock-fill"></i> Заблокировано
                                                         </button>
 
 
@@ -199,7 +194,7 @@ include 'config.php';
                                                             class="btn btn-inverse-danger btn-icon rounded-pill btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#locked<?=$row['folder_id']?>">
-                                                            <i class="bi bi-unlock-fill"></i> Unlocked
+                                                            <i class="bi bi-unlock-fill"></i> Разблокировано
                                                         </button>
                                                         <?php
                                                     }
@@ -213,7 +208,7 @@ include 'config.php';
                                                                     <div class="modal-body">
                                                                         <form action="php/verify_pin.php" method="POST">
                                                                             <label for="exampleInputEmail1"
-                                                                                class="form-label">Enter PIN</label>
+                                                                                class="form-label">Введите PIN</label>
                                                                             <input type="text" name="pin" maxlength="4"
                                                                                 class="form-control"
                                                                                 id="exampleInputEmail1"
@@ -244,7 +239,7 @@ include 'config.php';
                                                         <button type="button" class="btn btn-danger btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#delete<?=$row['folder_id']?>">
-                                                            Delete
+                                                            Удалить
                                                         </button>
 
                                                         <!-- Modal -->
@@ -254,17 +249,17 @@ include 'config.php';
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body fs-6 text-wrap">
-                                                                        Are you sure want to delete
+                                                                    Вы уверены, что хотите удалить папку
                                                                         <b
                                                                             class="text-capitalize">"<?=$row['folder_name']?>"</b>
-                                                                        Folder ?
-                                                                        You can't undo this action.
+                                                                        Папка ?
+                                                                        Это действие нельзя отменить.
                                                                     </div>
                                                                     <div class="modal-header d-flex flex-nowrap">
                                                                         <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Cancel</button>
+                                                                            data-bs-dismiss="modal">Отмена</button>
                                                                         <a href="php/delete_folder.php?fid=<?=$row['folder_id']?>"
-                                                                            class="btn btn-danger">Delete</a>
+                                                                            class="btn btn-danger">Удалить</a>
                                                                     </div>
                                                                 </div>
                                                             </div>

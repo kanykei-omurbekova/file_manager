@@ -47,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             exit();
                         } else {
                             // Insertion failed
-                            echo "Error: " . $stmt->error;
+                            echo "Ошибка: " . $stmt->error;
                         }
 
                         $stmt->close();
                     } else {
                         // File upload failed
-                        echo "File upload failed!";
+                        echo "Не удалось загрузить файл!";
                     }
                 } else {
                     $_SESSION['file_size'] = "success";
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } else {
-        echo "Error in fetching folder name from database";
+        echo "Ошибка при получении имени папки из базы данных";
     }
 }
 ?>

@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete User</title>
+    <title>Удалить</title>
     <style>
         form {
             width: 300px;

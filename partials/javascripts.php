@@ -22,7 +22,7 @@
  <script src="js/pdf.js"></script>
  <script src="js/pdf.worker.js"></script>
  <script>
-// Automatically hide the success alert after 3 seconds (3000 milliseconds)
+// Автоматически скрыть оповещения об успешном завершении через 3 секунды (3000 milliseconds)
 setTimeout(function() {
     var successAlert = document.getElementById('notification');
     successAlert.style.display = 'none';

@@ -25,14 +25,14 @@ if ($result->num_rows > 0) {
             $_SESSION['doc_delete'] = $docName;
             header("location: $redirect");
         } else {
-            echo "Error deleting record: " . $conn->error;
+            echo "Ошибка при удалении записи: " . $conn->error;
         }
     } else {
-        echo "Error deleting file.";
+        echo "Ошибка при удалении файла";
     }
 
     $conn->close();
 } else {
-    echo "No Doc Found!";
+    echo "Документ не найден";
 }
 ?>

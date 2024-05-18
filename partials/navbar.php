@@ -9,8 +9,8 @@
             <a class="navbar-brand brand-logo" href="index.php">
                 <!-- <img src="images/logo.svg" alt="logo" /> -->
                 <span class="fw-bold " style="font-family: Sofia,sans-serif;">
-                    <span class="fs-2 font-effect-shadow-multiple">File</span>
-                    <span class="text-primary fs-5 font-effect-shadow-multiple">Manager</span>
+                    <span class="fs-2 font-effect-shadow-multiple">Ordo</span>
+                    <span class="text-primary fs-5 font-effect-shadow-multiple">Docs</span>
                 </span>
             </a>
             <!-- <a class="navbar-brand brand-logo-mini" href="index.php">
@@ -32,8 +32,8 @@
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                 <h1 class="welcome-text">
                     <?php
-                    // Set the timezone to your local timezone
-                    date_default_timezone_set('Asia/Kolkata'); // Replace with your timezone, e.g., 'America/New_York'
+                    // Локальная таймзона
+                    date_default_timezone_set('Asia/Bishkek'); 
 
                     // Get the current hour
                     $currentHour = date('G');
@@ -42,14 +42,14 @@
                     $greeting = '';
 
                     if ($currentHour >= 5 && $currentHour < 12) {
-                        $greeting = 'Good Morning';
+                        $greeting = 'Доброе утро';
                     } elseif ($currentHour >= 12 && $currentHour < 18) {
-                        $greeting = 'Good Afternoon';
+                        $greeting = 'Добрый день';
                     } else {
-                        $greeting = 'Good Evening';
+                        $greeting = 'Добрый вечер';
                     }
 
-                    // Print the greeting message
+                    // Приветствие
                     echo $greeting;
                     ?>,
 
@@ -63,7 +63,7 @@
             <li class="nav-item">
                 <form class="search-form" action="#">
                     <i class="icon-search"></i>
-                    <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                    <input type="search" class="form-control" placeholder="Искать" title="Искать">
                 </form>
             </li>
             <li class="nav-item dropdown">
@@ -73,16 +73,16 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
                     aria-labelledby="notificationDropdown">
                     <a class="dropdown-item py-3 border-bottom">
-                        <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
-                        <span class="badge badge-pill badge-primary float-right">View all</span>
+                        <p class="mb-0 font-weight-medium float-left"> У вас 4 новых уведомления</p>
+                        <span class="badge badge-pill badge-primary float-right"> Посмотреть все </span>
                     </a>
                     <a class="dropdown-item preview-item py-3">
                         <div class="preview-thumbnail">
                             <i class="mdi mdi-alert m-auto text-primary"></i>
                         </div>
                         <div class="preview-item-content">
-                            <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
-                            <p class="fw-light small-text mb-0"> Just now </p>
+                            <h6 class="preview-subject fw-normal text-dark mb-1"> Ошибка приложения </h6>
+                            <p class="fw-light small-text mb-0"> Только что </p>
                         </div>
                     </a>
                     <a class="dropdown-item preview-item py-3">
@@ -90,8 +90,8 @@
                             <i class="mdi mdi-settings m-auto text-primary"></i>
                         </div>
                         <div class="preview-item-content">
-                            <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
-                            <p class="fw-light small-text mb-0"> Private message </p>
+                            <h6 class="preview-subject fw-normal text-dark mb-1"> Настройки</h6>
+                            <p class="fw-light small-text mb-0"> Личное сообщение </p>
                         </div>
                     </a>
                     <a class="dropdown-item preview-item py-3">
@@ -99,8 +99,8 @@
                             <i class="mdi mdi-airballoon m-auto text-primary"></i>
                         </div>
                         <div class="preview-item-content">
-                            <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
-                            <p class="fw-light small-text mb-0"> 2 days ago </p>
+                            <h6 class="preview-subject fw-normal text-dark mb-1">Регистрация нового пользователя </h6>
+                            <p class="fw-light small-text mb-0"> 2 дня назад </p>
                         </div>
                     </a>
                 </div>
@@ -114,8 +114,8 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
                     aria-labelledby="countDropdown">
                     <a class="dropdown-item py-3">
-                        <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                        <span class="badge badge-pill badge-primary float-right">View all</span>
+                        <p class="mb-0 font-weight-medium float-left">У вас 7 непрочитанных писем </p>
+                        <span class="badge badge-pill badge-primary float-right">Посмотреть все</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
@@ -123,8 +123,8 @@
                             <img src="images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
                         </div>
                         <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                            <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                            <p class="preview-subject ellipsis font-weight-medium text-dark"> Садыр Жапаров </p>
+                            <p class="fw-light small-text mb-0"> Встреча отменена </p>
                         </div>
                     </a>
                     <a class="dropdown-item preview-item">
@@ -132,8 +132,8 @@
                             <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
                         </div>
                         <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                            <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                            <p class="preview-subject ellipsis font-weight-medium text-dark"> Алмазбек Атамбаев </p>
+                            <p class="fw-light small-text mb-0"> Встреча отменена </p>
                         </div>
                     </a>
                     <a class="dropdown-item preview-item">
@@ -141,8 +141,8 @@
                             <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
                         </div>
                         <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                            <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                            <p class="preview-subject ellipsis font-weight-medium text-dark"> Курманбек Бакиев </p>
+                            <p class="fw-light small-text mb-0"> Встреча отменена </p>
                         </div>
                     </a>
                 </div>
@@ -166,16 +166,17 @@
                     <a class="dropdown-item"><i
                             class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a> -->
                     <a href="php/logout.php" class="dropdown-item"><i
-                            class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                            class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Выйти</a>
                 </div>
             </li>
             <!-- Add admin links here -->
             <?php if ($_SESSION['role'] === 1): // Check if the user is an admin ?>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#" data-bs-toggle="dropdown">Admin</a>
+                <a class="nav-link" href="#" data-bs-toggle="dropdown"> Админ </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown">
-                    <a class="dropdown-item" href="/admin/admin_list_users.php">Manage Users</a>
-                    <a class="dropdown-item" href="/admin/admin_add_user.php">Add User</a>
+                    <a class="dropdown-item" href="/admin/admin_list_users.php">Управление пользователями
+                    </a>
+                    <a class="dropdown-item" href="/admin/admin_add_user.php">Добавить пользователя</a>
                 </div>
             </li>
             <?php endif; ?>

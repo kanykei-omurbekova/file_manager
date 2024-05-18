@@ -18,7 +18,7 @@ include 'partials/php_functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Shared Folder </title>
+    <title>Общие папки </title>
     <?php include 'partials/headtags.php'; ?>
 </head>
 
@@ -40,15 +40,14 @@ include 'partials/php_functions.php';
                         <div class="col-md-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Create Shared Folder with Friends</h4>
+                                    <h4 class="card-title">Создать общую папку с друзьями</h4>
                                     <p class="card-description">
                                         <!-- Shared folder crated notification  -->
                                         <?php
                                     if (isset($_SESSION['sf_created'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-check-circle-fill"></i>Success ! </b> Shared Folder created
-                                        successfully.
+                                        <b> <i class="bi bi-check-circle-fill"></i> Успешно ! </b> Общая папка успешно создана.
                                     </div>
                                     <?php
                                        unset($_SESSION['sf_created']);
@@ -57,11 +56,11 @@ include 'partials/php_functions.php';
                                     </p>
                                     <form class="forms-sample" action="php/new_share_folder.php" method="POST">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Shared Folder Name</label>
+                                            <label for="exampleInputEmail1">Название общей папки</label>
                                             <input type="text" name="foldername" class="form-control"
-                                                id="exampleInputEmail1" placeholder="Folder Name">
+                                                id="exampleInputEmail1" placeholder="Название папки">
                                         </div>
-                                        <button type="submit" class="btn btn-primary me-2">Create</button>
+                                        <button type="submit" class="btn btn-primary me-2">Создать</button>
                                     </form>
                                 </div>
                             </div>
@@ -69,15 +68,14 @@ include 'partials/php_functions.php';
                         <div class="col-lg-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title"> Share Folders </h4>
+                                    <h4 class="card-title"> Поделиться папками </h4>
                                     <p class="card-description">
                                         <!-- share folder delete notiication  -->
                                         <?php
                                     if (isset($_SESSION['sfdelete'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-check-circle-fill"></i>Success ! </b> Shared Folder deleted
-                                        successfully.
+                                        <b> <i class="bi bi-check-circle-fill"></i>Успешно ! </b> Общая папка успешно удалена.
                                     </div>
                                     <?php
                                        unset($_SESSION['sfdelete']);
@@ -88,10 +86,10 @@ include 'partials/php_functions.php';
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Profile</th>
-                                                    <th>Members</th>
-                                                    <th>Created</th>
-                                                    <th>Status</th>
+                                                <th>Профиль</th>
+                                                <th>Участники</th>
+                                                <th>Создано</th>
+                                                <th>Статус</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -141,9 +139,9 @@ include 'partials/php_functions.php';
                                                         <?php
                                                     $members = $sfrow['total_members'];
                                                     if ($members == 1) {
-                                                        echo $members. " member";
+                                                        echo $members. " участника";
                                                     }else {
-                                                        echo $members. " members";
+                                                        echo $members. " участников";
                                                     }
 
                                                     ?>
@@ -151,7 +149,7 @@ include 'partials/php_functions.php';
                                                     <td>
                                                         <?php
                                                                 // Set the timezone to Asia/Kolkata
-                                                                date_default_timezone_set('Asia/Kolkata');
+                                                                date_default_timezone_set('Asia/Bishkek');
 
                                                                 // Assuming $row['story_date'] contains the story's date in a format like 'Y-m-d H:i:s'
                                                                 $createdat = strtotime($sfrow['sf_date']);
@@ -165,23 +163,23 @@ include 'partials/php_functions.php';
 
                                                                 if ($timeDifference < 60) {
                                                                     // Less than a minute
-                                                                    $timePosted = "Just now";
+                                                                    $timePosted = "Только что";
                                                                 } elseif ($timeDifference < 3600) {
                                                                     // Less than an hour
                                                                     $minutes = floor($timeDifference / 60);
-                                                                    $timePosted = $minutes . ' minute' . ($minutes != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $minutes . ' минут' . ($minutes != 1 ? '' : '') . 'назад';
                                                                 } elseif ($timeDifference < 86400) {
                                                                     // Less than a day
                                                                     $hours = floor($timeDifference / 3600);
-                                                                    $timePosted = $hours . ' hour' . ($hours != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $hours . ' часов' . ($hours != 1 ? '' : '') . ' назад';
                                                                 } elseif ($timeDifference < 2592000) {
                                                                     // Less than a month (30 days)
                                                                     $days = floor($timeDifference / 86400);
-                                                                    $timePosted = $days . ' day' . ($days != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $days . ' day' . ($days != 1 ? '' : '') . ' ago';
                                                                 } else {
                                                                     // More than a month
                                                                     $months = floor($timeDifference / 2592000); // Approximate number of seconds in a month
-                                                                    $timePosted = $months . ' month' . ($months != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $months . ' месяцев' . ($months != 1 ?  : '') . ' ago';
                                                                 }
 
                                                                 // Print the time when the story was posted
@@ -189,7 +187,7 @@ include 'partials/php_functions.php';
                                                                 ?>
                                                     </td>
                                                     <td><a href="share_folder_documents.php?id=<?=$sfrow['sf_id']?>"
-                                                            class="btn btn-inverse-primary btn-sm rounded">Open</a>
+                                                            class="btn btn-inverse-primary btn-sm rounded">Открыть</a>
 
                                                         <?php
                                                             $sf_id = $sfrow['sf_user'];
@@ -200,7 +198,7 @@ include 'partials/php_functions.php';
                                                             class="btn btn-inverse-danger btn-sm rounded"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#deletesharefolder<?=$sfrow['sf_id']?>">
-                                                            Delete
+                                                            Удалить
                                                         </button>
                                                         <?php
                                                             }
@@ -212,18 +210,15 @@ include 'partials/php_functions.php';
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body fs-6 fw-bold text-wrap">
-                                                                        Are you sure you want to close this sharefolder,
-                                                                        all the documents and members will be removed
-                                                                        from this sharefolder. This action cannot be
-                                                                        undo. <br> Are you sure you want to continue ?
+                                                                    Вы уверены, что хотите закрыть эту общую папку? Все документы и участники будут удалены из этой общей папки. Это действие нельзя отменить. <br>Вы уверены, что хотите продолжить?
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button"
                                                                             class="btn btn-secondary btn-sm"
-                                                                            data-bs-dismiss="modal">Close</button>
+                                                                            data-bs-dismiss="modal">Закрыть</button>
                                                                         <a type="button"
                                                                             href="php/delete_sharefolder.php?sfid=<?=$sfrow['sf_id']?>"
-                                                                            class="btn btn-danger btn-sm">Yes, Continue
+                                                                            class="btn btn-danger btn-sm">Да, Продолжить
                                                                             <i class="bi bi-arrow-right-short"></i></a>
                                                                     </div>
                                                                 </div>
@@ -238,7 +233,7 @@ include 'partials/php_functions.php';
                                                 }
                                                 } else {
                                                ?>
-                                                <td>No Sharefolder found !</td>
+                                                <td>Общая папка не найдена!</td>
                                                 <?php
                                                 }
                                                 $conn->close();

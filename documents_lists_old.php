@@ -1,9 +1,9 @@
 <?php
 // Initialize the session
 session_start();
- 
+
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: index.php");
     exit;
 }
@@ -19,7 +19,7 @@ include 'partials/php_functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title> Список Папок</title>
+    <title>Folders List</title>
     <?php include 'partials/headtags.php'; ?>
 </head>
 
@@ -38,99 +38,86 @@ include 'partials/php_functions.php';
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                <div class="row">
-                        <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 120 120">
-                                    <circle cx="60" cy="64" r="48" opacity=".35"></circle><circle cx="60" cy="60" r="48" fill="#44bf00"></circle><polygon points="53.303,89 26.139,61.838 33.582,54.395 53.303,74.116 86.418,41 93.861,48.443" opacity=".35"></polygon><polygon fill="#fff" points="53.303,84 26.139,56.838 33.582,49.395 53.303,69.116 86.418,36 93.861,43.443"></polygon>
-                                    </svg>
-
-                                        Утвержденные Документы</h4>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Название</th>
-                                                    <th>Размер Файла</th>
-                                                    <th>Загружено</th>
-                                                    <th>Статус Утверждения</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $user_id = $_SESSION['user_id'];
-                                                $sql = "SELECT d.*, u.user_fullname AS approver 
-                                                        FROM documents d
-                                                        LEFT JOIN users u ON d.approved_by = u.user_id
-                                                        WHERE doc_user = $user_id";
-                                                $result = $conn->query($sql);
-
-                                                if ($result->num_rows > 0) {
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        ?>
-                                                        <tr>
-                                                            <td><?= htmlspecialchars($row['doc_name']) ?></td>
-                                                            <td><?= formatFileSize($row['doc_size']) ?></td>
-                                                            <td><?= htmlspecialchars($row['doc_date']) ?></td>
-                                                            <td>
-                                                                <?php
-                                                                if ($row['approved'] == 1) {
-                                                                    echo "Утвердил " . htmlspecialchars($row['approver']) . " в " . htmlspecialchars($row['approved_at']);
-                                                                } else {
-                                                                    echo "Ожидает утверждения";
-                                                                }
-                                                                ?>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
-                                                } else {
-                                                    echo "<tr><td colspan='4'>Документы не найдены.</td></tr>";
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                            width="32" height="32" viewBox="0 0 48 48">
-                                            <linearGradient id="WQEfvoQAcpQgQgyjQQ4Hqa_dINnkNb1FBl4_gr1" x1="24" x2="24"
-                                                y1="6.708" y2="14.977" gradientUnits="userSpaceOnUse">
+                                    <h4 class="card-title">
+                                    <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>File Size</th>
+                <th>Uploaded on</th>
+                <th>Approval Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $user_id = $_SESSION['user_id'];
+            $sql = "SELECT d.*, u.username AS approver 
+                    FROM documents d
+                    LEFT JOIN users u ON d.approved_by = u.user_id
+                    WHERE doc_user = $user_id";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['doc_name']) ?></td>
+                        <td><?= htmlspecialchars($row['doc_size']) ?></td>
+                        <td><?= htmlspecialchars($row['doc_date']) ?></td>
+                        <td>
+                            <?php
+                            if ($row['approved'] == 1) {
+                                echo "Approved by " . htmlspecialchars($row['approver']) . " on " . htmlspecialchars($row['approved_at']);
+                            } else {
+                                echo "Pending Approval";
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            } else {
+                echo "<tr><td colspan='4'>No documents found.</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32"
+                                            height="32" viewBox="0 0 48 48">
+                                            <linearGradient id="WQEfvoQAcpQgQgyjQQ4Hqa_dINnkNb1FBl4_gr1" x1="24"
+                                                x2="24" y1="6.708" y2="14.977" gradientUnits="userSpaceOnUse">
                                                 <stop offset="0" stop-color="#eba600"></stop>
                                                 <stop offset="1" stop-color="#c28200"></stop>
                                             </linearGradient>
                                             <path fill="url(#WQEfvoQAcpQgQgyjQQ4Hqa_dINnkNb1FBl4_gr1)"
                                                 d="M24.414,10.414l-2.536-2.536C21.316,7.316,20.553,7,19.757,7L5,7C3.895,7,3,7.895,3,9l0,30	c0,1.105,0.895,2,2,2l38,0c1.105,0,2-0.895,2-2V13c0-1.105-0.895-2-2-2l-17.172,0C25.298,11,24.789,10.789,24.414,10.414z">
                                             </path>
-                                            <linearGradient id="WQEfvoQAcpQgQgyjQQ4Hqb_dINnkNb1FBl4_gr2" x1="24" x2="24"
-                                                y1="10.854" y2="40.983" gradientUnits="userSpaceOnUse">
+                                            <linearGradient id="WQEfvoQAcpQgQgyjQQ4Hqb_dINnkNb1FBl4_gr2" x1="24"
+                                                x2="24" y1="10.854" y2="40.983" gradientUnits="userSpaceOnUse">
                                                 <stop offset="0" stop-color="#ffd869"></stop>
                                                 <stop offset="1" stop-color="#fec52b"></stop>
                                             </linearGradient>
                                             <path fill="url(#WQEfvoQAcpQgQgyjQQ4Hqb_dINnkNb1FBl4_gr2)"
                                                 d="M21.586,14.414l3.268-3.268C24.947,11.053,25.074,11,25.207,11H43c1.105,0,2,0.895,2,2v26	c0,1.105-0.895,2-2,2H5c-1.105,0-2-0.895-2-2V15.5C3,15.224,3.224,15,3.5,15h16.672C20.702,15,21.211,14.789,21.586,14.414z">
                                             </path>
-                                        </svg> Список папок
+                                        </svg> Folders list
                                         <a href="new_document.php"
-                                            class="btn btn-inverse-success float-end rounded-pill btn-md">Загрузить новый</a>
+                                            class="btn btn-inverse-success float-end rounded-pill btn-md">Upload New</a>
                                     </h4>
                                     <p class="card-description">
-                                        <!-- wrong pin notificaton  -->
+                                        <!-- wrong pin notification  -->
                                         <?php
                                     if (isset($_SESSION['wrongpin'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Ошибка ! </b> Неправильный PIN-код.
+                                        <b> <i class="bi bi-exclamation-triangle-fill"></i>Failed ! </b> Wrong PIN.
                                     </div>
                                     <?php
                                        unset($_SESSION['wrongpin']);
@@ -141,9 +128,9 @@ include 'partials/php_functions.php';
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Папка </th>
-                                                    <th>Элементы</th>
-                                                    <th>Размер</th>
+                                                    <th>Folder </th>
+                                                    <th>Items</th>
+                                                    <th>Size</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -250,7 +237,7 @@ include 'partials/php_functions.php';
                                                                         <form action="php/verify_pin_to_open_folder.php"
                                                                             method="POST">
                                                                             <label for="exampleInputEmail1"
-                                                                                class="form-label">Введите PIN </label>
+                                                                                class="form-label">Enter PIN </label>
                                                                             <input type="number" name="pin" min="0"
                                                                                 max="9999" class="form-control"
                                                                                 id="pinInput">
@@ -259,7 +246,7 @@ include 'partials/php_functions.php';
                                                                                 value="<?=$row['folder_id']?>">
                                                                             <div class="modal-footer mb-0">
                                                                                 <button type="submit"
-                                                                                    class="btn btn-inverse-primary rounded-pill">Продолжить
+                                                                                    class="btn btn-inverse-primary rounded-pill">Continue
                                                                                 </button>
                                                                             </div>
                                                                         </form>
@@ -301,7 +288,7 @@ include 'partials/php_functions.php';
                                                                 </linearGradient>
                                                                 <path
                                                                     fill="url(#WQEfvoQAcpQgQgyjQQ4Hqb_dINnkNb1FBl4_gr2)"
-                                                                    d="M21.586,14.414l3.268-3.268C24.947,11.053,25.074,11,25.207,11H43c1.105,0,2,0.895,2,2v26	c0,1.105-0.895,2-2,2H5c-1.105,0-2-0.895-2-2V15.5C3,15.224,3.224,15,3.5,15h16.672C20.702,15,21.211,14.789,21.586,14.414z">
+                                                                    d="M21.586,14.414l3.268-3.268C24.947,11.053,25.074,11,25.207,11H43c1.105,0,2-0.895,2,2v26	c0,1.105-0.895,2-2,2H5c-1.105,0-2-0.895-2-2V15.5C3,15.224,3.224,15,3.5,15h16.672C20.702,15,21.211,14.789,21.586,14.414z">
                                                                 </path>
                                                             </svg>
                                                             <?=$row['folder_name']?>
@@ -311,7 +298,7 @@ include 'partials/php_functions.php';
                                                         ?>
 
                                                     </td>
-                                                    <td><?=$row['item_count']?> элементов </td>
+                                                    <td><?=$row['item_count']?> items </td>
                                                     <td>
                                                         <?php                                                         
                                                         $folderDataSize = $row['folder_data_size'];
@@ -324,7 +311,7 @@ include 'partials/php_functions.php';
                                                   }
                                                 } else {
                                                     ?>
-<td>Документы не загружены<</td>
+<td>No Documents uploaded</td>
                                                     <?php
                                                 }
                                                 $conn->close();
@@ -337,14 +324,71 @@ include 'partials/php_functions.php';
                             </div>
                         </div>
                     </div>
+                    <!-- Document Approval Status -->
+                    <div class="row">
+                        <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Documents List with Approval Status</h4>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>File Size</th>
+                                                    <th>Uploaded on</th>
+                                                    <th>Approval Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $user_id = $_SESSION['user_id'];
+                                                $sql = "SELECT d.*, u.username AS approver 
+                                                        FROM documents d
+                                                        LEFT JOIN users u ON d.approved_by = u.user_id
+                                                        WHERE doc_user = $user_id";
+                                                $result = $conn->query($sql);
+
+                                                if ($result->num_rows > 0) {
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        ?>
+                                                        <tr>
+                                                            <td><?= htmlspecialchars($row['doc_name']) ?></td>
+                                                            <td><?= htmlspecialchars($row['doc_size']) ?></td>
+                                                            <td><?= htmlspecialchars($row['doc_date']) ?></td>
+                                                            <td>
+                                                                <?php
+                                                                if ($row['approved'] == 1) {
+                                                                    echo "Approved by " . htmlspecialchars($row['approver']) . " on " . htmlspecialchars($row['approved_at']);
+                                                                } else {
+                                                                    echo "Pending Approval";
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                } else {
+                                                    echo "<tr><td colspan='4'>No documents found.</td></tr>";
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:../../partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">ORDO docs<a
-                                href="https://www.bootstrapdash.com/" target="_blank">Cистема Электронного Документооборота</a>Бишкек,Кыргызстан</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. Все права защищены</span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
+                                href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
+                            BootstrapDash.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All
+                            rights reserved.</span>
                     </div>
                 </footer>
                 <!-- partial -->

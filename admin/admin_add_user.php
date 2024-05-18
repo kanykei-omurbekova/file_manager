@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add User</title>
+    <title>Добавить пользователя</title>
     <style>
         form {
             width: 300px;
@@ -56,11 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <form action="admin_add_user.php" method="post">
-        <label>Full Name: <input type="text" name="fullname" required></label>
-        <label>Email: <input type="email" name="email" required></label>
-        <label>Phone: <input type="text" name="phone" required></label>
-        <label>Username: <input type="text" name="username" required></label>
-        <label>Password: <input type="password" name="password" required></label>
+        <label>ФИО: <input type="text" name="fullname" required></label>
+        <label>Почта: <input type="email" name="email" required></label>
+        <label>Номер телефона: <input type="text" name="phone" required></label>
+        <label>Имя пользователя: <input type="text" name="username" required></label>
+        <label>Пароль: <input type="password" name="password" required></label>
         <input type="submit" value="Add User">
     </form>
 </body>

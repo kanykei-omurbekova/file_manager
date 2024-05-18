@@ -497,7 +497,7 @@ include 'partials/php_functions.php';
                                     </div>
                                     <br>
                                     <button class="btn btn-inverse-dark btn-rounded btn-sm" onclick="goBack()"><i
-                                            class="bi bi-arrow-left-short"></i> Back</button>
+                                            class="bi bi-arrow-left-short"></i> Назад</button>
                                 </div>
                             </div>
                         </div>

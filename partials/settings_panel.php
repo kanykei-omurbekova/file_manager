@@ -2,10 +2,10 @@
         <div id="settings-trigger"><i class="ti-settings"></i></div>
         <div id="theme-settings" class="settings-panel">
           <i class="settings-close ti-close"></i>
-          <p class="settings-heading">SIDEBAR SKINS</p>
-          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
-          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
-          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <p class="settings-heading">ТЕМА БОКОВОЙ ПАНЕЛИ</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Дневной</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Ночной</div>
+          <p class="settings-heading mt-2">ТЕМА ЗАГОЛОВКА</p>
           <div class="color-tiles mx-0 px-4">
             <div class="tiles success"></div>
             <div class="tiles warning"></div>
@@ -20,10 +20,10 @@
         <i class="settings-close ti-close"></i>
         <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+            <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">СПИСОК ДЕЛ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+            <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">ЧАТЫ</a>
           </li>
         </ul>
         <div class="tab-content" id="setting-content">
@@ -32,7 +32,7 @@
               <form class="form w-100">
                 <div class="form-group d-flex">
                   <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
-                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Добавить</button>
                 </div>
               </form>
             </div>
@@ -107,59 +107,59 @@
           <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
             <div class="d-flex align-items-center justify-content-between border-bottom">
               <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 fw-normal">See All</small>
+              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 fw-normal">Посмотреть все</small>
             </div>
             <ul class="chat-list">
               <li class="list active">
                 <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
-                  <p>Thomas Douglas</p>
-                  <p>Available</p>
+                  <p>Айгуль Шаршенова</p>
+                  <p>Доступна</p>
                 </div>
-                <small class="text-muted my-auto">19 min</small>
+                <small class="text-muted my-auto">19 мин</small>
               </li>
               <li class="list">
                 <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <div class="wrapper d-flex">
-                    <p>Catherine</p>
+                    <p>Айбек Жамгырчиев</p>
                   </div>
-                  <p>Away</p>
+                  <p>Отсутсвтует</p>
                 </div>
                 <div class="badge badge-success badge-pill my-auto mx-2">4</div>
-                <small class="text-muted my-auto">23 min</small>
+                <small class="text-muted my-auto">23 мин</small>
               </li>
               <li class="list">
                 <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
-                  <p>Daniel Russell</p>
-                  <p>Available</p>
+                  <p>Исхак Раззаков</p>
+                  <p>Доступен</p>
                 </div>
-                <small class="text-muted my-auto">14 min</small>
+                <small class="text-muted my-auto">14 мин</small>
               </li>
               <li class="list">
                 <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
-                  <p>James Richardson</p>
-                  <p>Away</p>
+                  <p>Омурбеков Нурсултан</p>
+                  <p>Отсутсвтует</p>
                 </div>
-                <small class="text-muted my-auto">2 min</small>
+                <small class="text-muted my-auto">2 мин</small>
               </li>
               <li class="list">
                 <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
-                  <p>Madeline Kennedy</p>
-                  <p>Available</p>
+                  <p>Аделина Кенешова</p>
+                  <p>Доступна</p>
                 </div>
                 <small class="text-muted my-auto">5 min</small>
               </li>
               <li class="list">
                 <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
-                  <p>Sarah Graves</p>
-                  <p>Available</p>
+                  <p>Сара Жалилова</p>
+                  <p>Доступна</p>
                 </div>
-                <small class="text-muted my-auto">47 min</small>
+                <small class="text-muted my-auto">47 мин</small>
               </li>
             </ul>
           </div>

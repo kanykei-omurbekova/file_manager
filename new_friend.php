@@ -18,7 +18,7 @@ include 'partials/php_functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Add New Friends </title>
+    <title>Добавить новых друзей </title>
     <?php include 'partials/headtags.php'; ?>
 </head>
 
@@ -40,15 +40,14 @@ include 'partials/php_functions.php';
                         <div class="col-lg-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Users</h4>
+                                    <h4 class="card-title">Пользователи</h4>
                                     <p class="card-description">
                                         <!-- friend request sent notificaton  -->
                                         <?php
                                     if (isset($_SESSION['requestsent'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-person-check-fill"></i> Success ! </b> Friend request
-                                        sent.
+                                        <b> <i class="bi bi-person-check-fill"></i> Успешно! </b> Запрос на дружбу отправлен.
                                     </div>
                                     <?php
                                        unset($_SESSION['requestsent']);
@@ -59,8 +58,7 @@ include 'partials/php_functions.php';
                                     if (isset($_SESSION['cancelrequest'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-person-x-fill"></i> Cancelled ! </b> Friend request
-                                        cancelled.
+                                        <b> <i class="bi bi-person-x-fill"></i> Отменено! </b> Запрос на дружбу отменён.
                                     </div>
                                     <?php
                                        unset($_SESSION['cancelrequest']);
@@ -71,10 +69,10 @@ include 'partials/php_functions.php';
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Username</th>
-                                                    <th>Joined</th>
-                                                    <th>Status</th>
+                                                <th>Имя</th>
+                                                <th>Имя пользователя</th>
+                                                <th>Присоединился</th>
+                                                <th>Статус</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -102,7 +100,7 @@ include 'partials/php_functions.php';
                                                     <td>
                                                         <?php
                                                                 // Set the timezone to Asia/Kolkata
-                                                                date_default_timezone_set('Asia/Kolkata');
+                                                                date_default_timezone_set('Asia/Bishkek');
 
                                                                 // Assuming $row['story_date'] contains the story's date in a format like 'Y-m-d H:i:s'
                                                                 $createdat = strtotime($row['created_at']);
@@ -116,23 +114,24 @@ include 'partials/php_functions.php';
 
                                                                 if ($timeDifference < 60) {
                                                                     // Less than a minute
-                                                                    $timePosted = "Uploaded just now";
+                                                                    $timePosted = "
+                                                                    Загружено только что";
                                                                 } elseif ($timeDifference < 3600) {
                                                                     // Less than an hour
                                                                     $minutes = floor($timeDifference / 60);
-                                                                    $timePosted = $minutes . ' minute' . ($minutes != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $minutes . ' минут' . ($minutes != 1 ? '' : '') . ' назад';
                                                                 } elseif ($timeDifference < 86400) {
                                                                     // Less than a day
                                                                     $hours = floor($timeDifference / 3600);
-                                                                    $timePosted = $hours . ' hour' . ($hours != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $hours . ' часов' . ($hours != 1 ? '' : '') . ' назад';
                                                                 } elseif ($timeDifference < 2592000) {
                                                                     // Less than a month (30 days)
                                                                     $days = floor($timeDifference / 86400);
-                                                                    $timePosted = $days . ' day' . ($days != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $days . ' дней' . ($days != 1 ? '' : '') . ' назад';
                                                                 } else {
                                                                     // More than a month
                                                                     $months = floor($timeDifference / 2592000); // Approximate number of seconds in a month
-                                                                    $timePosted = $months . ' month' . ($months != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $months . ' месяцев' . ($months != 1 ? '' : '') . ' назад';
                                                                 }
 
                                                                 // Print the time when the story was posted
@@ -153,13 +152,13 @@ include 'partials/php_functions.php';
                                                             ?>
                                                         <a href="friends/cancel_friend_request.php?fid=<?=$fr_row['fr_id']?>"
                                                             class="btn btn-inverse-danger btn-sm rounded"><i
-                                                                class="bi bi-person-x-fill"></i> &nbsp; Cancel </a>
+                                                                class="bi bi-person-x-fill"></i> &nbsp; Отмена </a>
                                                         <?php
                                                         }else {
                                                             ?>
                                                         <a href="friends/send_friend_request.php?uid=<?=$row['user_id']?>"
                                                             class="btn btn-primary btn-sm rounded"><i
-                                                                class="bi bi-person-plus-fill"></i> &nbsp; Add </a>
+                                                                class="bi bi-person-plus-fill"></i> &nbsp; Добавить </a>
                                                         <?php
                                                         }
                                                         ?>
@@ -180,7 +179,7 @@ include 'partials/php_functions.php';
                                                 }
                                                 } else {
                                                     ?>
-                                                <td>No User Found</td>
+                                                <td>Пользователь не найден</td>
 
                                                 <?php
                                                 }
@@ -196,15 +195,14 @@ include 'partials/php_functions.php';
                         <div class="col-lg-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title"> Friend Requests </h4>
+                                    <h4 class="card-title"> Запросы на дружбу </h4>
                                     <p class="card-description">
                                         <!-- approve friend request notificaton  -->
                                         <?php
                                     if (isset($_SESSION['approve'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-person-fill-check"></i> Approved ! </b> Friend request
-                                        approved succesfully.
+                                        <b> <i class="bi bi-person-fill-check"></i> Одобрено ! </b> Запрос на дружбу успешно одобрен.
                                     </div>
                                     <?php
                                        unset($_SESSION['approve']);
@@ -215,8 +213,7 @@ include 'partials/php_functions.php';
                                     if (isset($_SESSION['decline'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-person-x-fill"></i> Declined ! </b> Friend request
-                                        declined succesfully.
+                                        <b> <i class="bi bi-person-x-fill"></i> Отклонено! </b> Запрос на дружбу успешно отклонен.
                                     </div>
                                     <?php
                                        unset($_SESSION['decline']);
@@ -228,10 +225,10 @@ include 'partials/php_functions.php';
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Username</th>
-                                                    <th> Request </th>
-                                                    <th>Status</th>
+                                                <th>Имя</th>
+                                                <th>Имя пользователя</th>
+                                                <th>Запрос</th>
+                                                <th>Статус</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -252,11 +249,11 @@ include 'partials/php_functions.php';
                                                     <td>
                                                         <?php
                                                                 // Set the timezone to Asia/Kolkata
-                                                                date_default_timezone_set('Asia/Kolkata');
+                                                                date_default_timezone_set('Asia/Bishkek');
 
                                                                 // Assuming $row['story_date'] contains the story's date in a format like 'Y-m-d H:i:s'
                                                                 $createdat = strtotime($friendrequestsrow['fr_date']);
-                                                                $currentDate = time(); // Get the current timestamp in Asia/Kolkata timezone
+                                                                $currentDate = time(); // Get the current timestamp in Asia/Bishkek timezone
 
                                                                 // Calculate the time difference in seconds
                                                                 $timeDifference = $currentDate - $createdat;
@@ -266,23 +263,23 @@ include 'partials/php_functions.php';
 
                                                                 if ($timeDifference < 60) {
                                                                     // Less than a minute
-                                                                    $timePosted = "Just now";
+                                                                    $timePosted = "Только что";
                                                                 } elseif ($timeDifference < 3600) {
                                                                     // Less than an hour
                                                                     $minutes = floor($timeDifference / 60);
-                                                                    $timePosted = $minutes . ' minute' . ($minutes != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $minutes . ' минут' . ($minutes != 1 ? '' : '') . ' назад';
                                                                 } elseif ($timeDifference < 86400) {
                                                                     // Less than a day
                                                                     $hours = floor($timeDifference / 3600);
-                                                                    $timePosted = $hours . ' hour' . ($hours != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $hours . ' часов' . ($hours != 1 ? '' : '') . ' назад';
                                                                 } elseif ($timeDifference < 2592000) {
                                                                     // Less than a month (30 days)
                                                                     $days = floor($timeDifference / 86400);
-                                                                    $timePosted = $days . ' day' . ($days != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $days . ' дней' . ($days != 1 ? '' : '') . ' назад';
                                                                 } else {
                                                                     // More than a month
                                                                     $months = floor($timeDifference / 2592000); // Approximate number of seconds in a month
-                                                                    $timePosted = $months . ' month' . ($months != 1 ? 's' : '') . ' ago';
+                                                                    $timePosted = $months . ' месяцев' . ($months != 1 ? '' : '') . ' назад';
                                                                 }
 
                                                                 // Print the time when the story was posted
@@ -291,9 +288,9 @@ include 'partials/php_functions.php';
                                                     </td>
                                                     <td>
                                                         <a href="friends/approve_friend_request.php?fid=<?=$friendrequestsrow['fr_id']?>"
-                                                            class="btn btn-inverse-success btn-sm rounded">Approve</a>
+                                                            class="btn btn-inverse-success btn-sm rounded">Одобрить</a>
                                                         <a href="friends/decline_friend_request.php?fid=<?=$friendrequestsrow['fr_id']?>"
-                                                            class="btn btn-inverse-danger btn-sm rounded">Decline</a>
+                                                            class="btn btn-inverse-danger btn-sm rounded">Отклонить</a>
                                                     </td>
                                                 </tr>
 
@@ -301,7 +298,7 @@ include 'partials/php_functions.php';
                                                     }
                                                     } else {
                                                         ?>
-<td>No Friend Requests</td>
+<td>Нет запросов на дружбу</td>
                                                         <?php
                                                     }
                                                 ?>
@@ -318,11 +315,9 @@ include 'partials/php_functions.php';
                 <!-- partial:../../partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
-                                href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
-                            BootstrapDash.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All
-                            rights reserved.</span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">ORDO docs<a
+                                href="https://www.bootstrapdash.com/" target="_blank">Cистема Электронного Документооборота</a>Бишкек,Кыргызстан</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. Все права защищены</span>
                     </div>
                 </footer>
                 <!-- partial -->

@@ -16,9 +16,9 @@ if ($conn->query($delete_docs) === TRUE) {
             $_SESSION['memberremoved'] = "success";
             header("location: $redirect");
         } else {
-        echo "Error deleting record: " . $conn->error;
+        echo "Ошибка при удалении записи: " . $conn->error;
         }
 } else {
-  echo "Error deleting record: " . $conn->error;
+  echo "Ошибка при удалении записи: " . $conn->error;
 }
 ?>

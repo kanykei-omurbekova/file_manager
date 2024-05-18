@@ -19,7 +19,7 @@ include 'partials/php_functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Shared Folder Documents </title>
+    <title>Общие документы папки </title>
     <?php include 'partials/headtags.php'; ?>
 
 </head>
@@ -81,7 +81,7 @@ include 'partials/php_functions.php';
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-primary btn-sm rounded float-end"
                                             data-bs-toggle="modal" data-bs-target="#admembers">
-                                            <i class="bi bi-person-plus-fill"></i> &nbsp; Add Members
+                                            <i class="bi bi-person-plus-fill"></i> &nbsp; Добавить участников
                                         </button>
                                         <?php
                                                }
@@ -100,9 +100,9 @@ include 'partials/php_functions.php';
                                                             method="POST">
                                                             <div class="mb-3">
                                                                 <label for="exampleInputEmail1"
-                                                                    class="form-label">Choose Friend </label>
+                                                                    class="form-label">Выберите друга </label>
                                                                 <select name="member" id="" class="form-control">
-                                                                    <option value="" selected hidden>Choose...</option>
+                                                                    <option value="" selected hidden>Выбрать...</option>
                                                                     <?php
 
                                                                         $userid = $_SESSION['user_id'];
@@ -133,7 +133,7 @@ include 'partials/php_functions.php';
                                                                         }
                                                                         } else {
                                                                         ?>
-                                                                    <option value="" disabled>No friends found !
+                                                                    <option value="" disabled>Друзья не найдены!
                                                                     </option>
                                                                     <?php
                                                                         }
@@ -144,8 +144,7 @@ include 'partials/php_functions.php';
                                                                     value="<?php echo $sfid; ?>">
                                                             </div>
                                                             <button type="submit" class="btn btn-primary float-end"> <i
-                                                                    class="bi bi-person-plus-fill"></i> &nbsp;Add
-                                                                Member</button>
+                                                                    class="bi bi-person-plus-fill"></i> &nbsp;Добавить участника</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -158,8 +157,7 @@ include 'partials/php_functions.php';
                                     if (isset($_SESSION['memberadded'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-check-circle-fill"></i>Success ! </b> New member added
-                                        successfully.
+                                        <b> <i class="bi bi-check-circle-fill"></i>Успешно ! </b> Новый участник успешно добавлен.
                                     </div>
                                     <?php
                                        unset($_SESSION['memberadded']);
@@ -170,8 +168,7 @@ include 'partials/php_functions.php';
                                     if (isset($_SESSION['memberexists'])) {
                                         ?>
                                     <div id="notification" class="alert alert-danger" role="alert">
-                                        <b> <i class="bi bi-x-circle-fill"></i>Failed ! </b> Member already exists
-                                        in sharefolder.
+                                        <b> <i class="bi bi-x-circle-fill"></i>Ошибка ! </b> Участник уже существует в общей папке.
                                     </div>
                                     <?php
                                        unset($_SESSION['memberexists']);
@@ -182,8 +179,7 @@ include 'partials/php_functions.php';
                                     if (isset($_SESSION['doc_delete_sf'])) {
                                         ?>
                                     <div id="notification" class="alert alert-success" role="alert">
-                                        <b> <i class="bi bi-check-circle-fill"></i> Success ! </b> Document removed from
-                                        sharefolder.
+                                        <b> <i class="bi bi-check-circle-fill"></i> Успешно! </b> Документ удален из общей папки.
                                     </div>
                                     <?php
                                        unset($_SESSION['doc_delete_sf']);
@@ -194,10 +190,10 @@ include 'partials/php_functions.php';
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Doc Name</th>
-                                                    <th>File Size</th>
-                                                    <th>Shared</th>
-                                                    <th>Action</th>
+                                                <th>Имя документа</th>
+                                                <th>Размер файла</th>
+                                                <th>Общий доступ</th>
+                                                <th>Действие</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -661,11 +657,9 @@ include 'partials/php_functions.php';
                 <!-- partial:../../partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
-                                href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
-                            BootstrapDash.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All
-                            rights reserved.</span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">ORDO docs<a
+                                href="https://www.bootstrapdash.com/" target="_blank">Cистема Электронного Документооборота</a>Бишкек,Кыргызстан</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. Все права защищены</span>
                     </div>
                 </footer>
                 <!-- partial -->

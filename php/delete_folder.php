@@ -9,45 +9,45 @@ $sql1 = "SELECT * from folders where folder_id = $fid";
 $result1 = $conn->query($sql1);
 
 if ($result1->num_rows > 0) {
-  // output data of each row
+  // вывод данных каждой строки
   while($row1 = $result1->fetch_assoc()) {
     $foldername = $row1['folder_name'];
-// After fetching folder name check folder is exist or not 
+    // После получения имени папки проверить, существует ли папка
 
-    // Get the folder name to delete from the form
+    // Получить имя папки для удаления из формы
     $folderNameToDelete = $foldername;
 
-    // Define the directory where the folder is located
-    $directory = "../folders_list/"; // Replace with the actual path
+    // Определить директорию, где находится папка
+    $directory = "../folders_list/"; // Замени на фактический путь
 
-    // Check if the folder exists in the directory
+    // Проверить, существует ли папка в директории
     if (file_exists($directory . $folderNameToDelete)) {
-        // Delete the folder from the file system
+        // Удалить папку из файловой системы
         if (rmdir($directory . $folderNameToDelete)) {
-            // Folder deleted from the file system, now delete from the database 
+            // Папка удалена из файловой системы, теперь удаляем из базы данных
 
-            // Delete folder details from the database
+            // Удалить данные папки из базы данных
             $sql = "DELETE FROM folders WHERE folder_id = $fid";
 
             if ($conn->query($sql) === TRUE) {
                 $_SESSION['folder_deleted'] = "success";
                 header("location: $redirect");
             } else {
-                echo "Error deleting folder from the file system or database: " . $conn->error;
+                echo "Ошибка при удалении папки из файловой системы или базы данных: " . $conn->error;
             }
 
-            // Close the database connection
+            // Закрыть соединение с базой данных
             $conn->close();
         } else {
             $_SESSION['error_delete_folder'] = "success";
             header("location: $redirect");
         }
     } else {
-        echo "Folder not found in the file system.";
+        echo "Папка не найдена в файловой системе.";
     }
   }
 } else {
-  echo "Error in fecthing folder name from database ";
+  echo "Ошибка при получении имени папки из базы данных.";
 }
 
 ?>
